@@ -1,0 +1,17 @@
+class Solution
+{
+    public:
+    string reverseWord(string str)
+    {
+       
+         const char* s=str.c_str();
+        int e=str.size();
+        string rev="";
+        for(int i=e; i>=0;i--){
+            rev=rev+s[i];
+            
+        }
+        
+        return rev;
+    }
+};
