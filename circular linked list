@@ -1,0 +1,31 @@
+#include<iostream>
+using namespace std;
+class node{
+    public:
+    int data;
+    node* next;
+    node(int data){
+        this->data=data;
+    }
+};
+void print(node* &head){
+    node* temp=head;
+    do {
+        std::cout << temp->data << " ";
+        temp = temp->next;
+        } while (temp != head);
+
+        std::cout << std::endl;
+    }
+int main(){
+    node* a=new node(4);
+    node* b=new node(3);
+    node* c=new node(5);
+    node* d=new node(2);
+    a->next=b;
+    b->next=c;
+    c->next=d;
+    d->next=a; 
+    print(a); 
+    return 0;
+}
