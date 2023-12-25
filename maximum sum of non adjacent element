@@ -1,0 +1,75 @@
+#include <bits/stdc++.h>
+int solverec(vector<int> &nums, int n) {
+    // base case
+    if(n<0)return 0;
+    if(n==0)return nums[0];
+
+    int incl=solverec(nums,n-2)+nums[n];
+    int ex=solverec(nums,n-1)+0;
+    return max(incl,ex);
+}
+int solvetab(vector<int> &nums) {
+      // base case
+      int n=nums.size();//int solvetab(vector<int> &nums,int n)
+      vector<int>dp(n,0);//int solvetab(vector<int> &nums , vector<int>dp)
+      dp[0]=nums[0];// if(n==0)return nums[0]; 
+ // this recursives calls convert into for loop 
+   // int incl=solvemem(nums,n-2,dp)+nums[n];
+   // int ex=solvemem(nums,n-1,dp)+0;
+    //dp[n]= max(incl,ex);
+      for (int i = 1; i < n; i++) {
+       //int incl=solvemem(nums,n-2,dp)+nums[n];
+      // this recursion calls convert into dp array
+      int incl=dp[i-2]+ nums[i];
+      int ex=dp[i-1]+0;
+      dp[i]=max(incl,ex);
+ }
+    return dp[n-1];
+}
+int solvemem(vector<int> &nums, int n,vector<int> &dp) {
+      // base case
+    if(n<0)return 0;
+    if(n==0)return nums[0];
+    if(dp[n]!=-1)return dp[n];
+    int incl=solvemem(nums,n-2,dp)+nums[n];
+    int ex=solvemem(nums,n-1,dp)+0;
+    dp[n]= max(incl,ex);
+    return dp[n];
+}
+int solve_space_optimization(vector<int> &nums) {
+      // base case
+    //if(n<0)return 0;
+    int n=nums.size();
+    int prev1=0;
+    //if(n==0)return nums[0];
+    int prev2=nums[0];
+    for (int i = 1; i < n; i++) {
+      //  int incl=solvemem(nums,n-2,dp)+nums[n];
+      int incl = prev1 + nums[i];
+      int ex = prev2 + 0;
+      int ans = max(incl, ex);
+      prev1 = prev2;
+      prev2 = ans;
+    }
+    return prev2;
+}
+
+int maximumNonAdjacentSum(vector<int> &nums) {
+    // Write your code here.
+    //int n = nums.size();
+    // normal rec.
+    // int ans=solverec(nums,n);
+    //  return ans;
+
+    // for recursion + memoization
+    //  vector<int>dp(n,-1);
+    // int ans2=solvemem(nums,n-1,dp);
+    // return ans2;
+
+    // for tabulation
+    //  return solvetab(nums);
+
+        // for space optimx=zation
+        return solve_space_optimization(nums);
+
+}
