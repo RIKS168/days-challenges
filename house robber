@@ -1,0 +1,36 @@
+#include <bits/stdc++.h> 
+long solve_space_optimization(vector<int> &nums) {
+      // base case
+    //if(n<0)return 0;
+    long n=nums.size();
+    long prev1=0;
+    //if(n==0)return nums[0];
+    long prev2=nums[0];
+    for (int i = 1; i < n; i++) {
+      //  int incl=solvemem(nums,n-2,dp)+nums[n];
+      int incl = prev1 + nums[i];
+      int ex = prev2 + 0;
+      int ans = max(incl, ex);
+      prev1 = prev2;
+      prev2 = ans;
+    }
+    return prev2;
+}
+
+long long int houseRobber(vector<int>& valueInHouse)
+{
+    // agr array m ek hi element hai to ek index vo ek element return hoga
+    int n=valueInHouse.size();
+    if(n==1)return valueInHouse[0];
+    vector<int>first,second;
+    for (int i = 0; i < n; i++) {
+  
+     if(i!=n-1)
+     first.push_back(valueInHouse[i]);
+     if(i!=0)
+     second.push_back(valueInHouse[i]);
+
+    
+    }
+    return max(solve_space_optimization(first),solve_space_optimization(second));
+}
