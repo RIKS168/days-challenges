@@ -1,0 +1,37 @@
+#include <bits/stdc++.h> 
+void subsequencesHelper(string sp, int index, string temp, vector<string> &ans) {
+
+    // Push the subsequence in ans
+    if (index == sp.length()) {
+
+        // If the current subsequence is not empty
+        if (temp.length() != 0) {
+            ans.push_back(temp);
+        }
+
+        return;
+    }
+    // Not including the current letter in subsequence
+    subsequencesHelper(sp, index + 1, temp, ans);
+
+    temp.push_back(sp[index]);
+    // Including the current letter in subsequence
+    subsequencesHelper(sp, index + 1, temp, ans);
+
+}
+
+vector<string> subsequences(string str) {
+
+    // Stores length of input string
+    int n = str.length();
+
+    // To store all the subsequences of s
+    vector<string> ans;
+
+    string temp = "";
+
+    // Finds all possible non empty subsequences of s
+    subsequencesHelper(str, 0 , temp, ans);
+
+    return ans;
+}
