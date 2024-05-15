@@ -1,0 +1,15 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+int  fac(int n){
+    if(n==0)return 1;
+    
+    int fact=n*fac(n-1);
+    return fact;
+}
+int main() {
+    // Write C++ code here
+    cout<<"factorial "<<fac(10);
+
+    return 0;
+}
