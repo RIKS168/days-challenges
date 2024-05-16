@@ -1,0 +1,21 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+void count(int n, string ch[]){
+    // base case
+    if(n==0)return ;
+    
+    int digit=n%10;
+    n= n/10;
+      count(n,ch);
+    cout<<ch[digit];
+}
+int main() {
+  string ch[]={"zero", "one","two","three","four","five","six","seven","eight","nine"};
+  int n;
+  cin>>n;
+  count(n, ch);
+  
+
+    return 0;
+}
