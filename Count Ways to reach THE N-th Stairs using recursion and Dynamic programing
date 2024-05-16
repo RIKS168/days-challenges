@@ -1,0 +1,23 @@
+#include <bits/stdc++.h> 
+int mod = 1e9 + 7;
+int countDistinctWays(int nStairs) {
+  // using recusion
+    // base case
+ //   if(nStairs==0)return 1;
+ //   if(nStairs<0)return 0;
+    // R Relation
+
+  //  int ans=countDistinctWays(nStairs-1)+countDistinctWays( nStairs-2);
+  // return ans;
+
+  // Dynamic Programming 
+if (nStairs == 0) return 1;
+    if (nStairs == 1) return 1;
+  vector<int> dp(nStairs + 1, 0);
+    dp[0] = 1;
+    dp[1] = 1;
+    for (int i = 2; i <= nStairs; ++i) {
+        dp[i] = dp[i -1] %mod+ dp[i -2]%mod;
+    }
+    return dp[nStairs]%mod;
+}
