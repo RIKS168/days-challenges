@@ -1,0 +1,28 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+
+bool issorted(int size, int arr[]){
+    if(size==0)return true;
+    if(size==1)return true;
+    int i=0;
+    if(arr[0]>arr[1])return false;
+    else{
+      bool rem=  issorted(size-1, arr+1);
+      return rem;
+    }
+}
+
+
+int main() {
+int arr[]={3,4,5,7};
+bool ans= issorted(5, arr);
+if(ans>0){
+    cout<<"sorted array"<<endl;
+}
+else{
+    cout<<"Not sorted array"<<endl;
+}
+
+    return 0;
+}
